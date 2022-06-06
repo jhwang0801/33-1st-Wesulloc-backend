@@ -1,4 +1,5 @@
 # Wesulloc 1차 클론 코딩 프로젝트
+<br>
 
 ## 개요
 * 오설록(https://www.osulloc.com/kr/ko) 웹페이지 클론코딩 프로젝트
@@ -14,12 +15,15 @@
 
 * 개발 일정에 맞춘 작업량 배분, 기능별 git 분기 및 merge의 중요성을 직접 느낄 수 있었으며, 차주에 진행되는 2차 프로젝트에서는 해당 경험을 통해 보다 부드러운 일정 진행이 이뤄질 수 있도록 하려고 합니다.
 
+<br>
 
 ## 개발 기간 및 팀원
 * 개발 기간 : 2022.05.23 ~ 2022.06.03
 * 개발 인원 : 프론트엔드 4명, 백엔드 2명 
 * `FE` : 이윤섭, 손가영, 김현주, 안수정 [(프론트엔드 Github Repository)](https://github.com/wecode-bootcamp-korea/33-1st-Wesulloc-frontend)
 * `BE` : 황재승, 최바다 [(백엔드 Github Repository)](https://github.com/wecode-bootcamp-korea/33-1st-Wesulloc-backend)
+
+<br>
 
 ## 사용한 기술
 
@@ -32,12 +36,18 @@
 `Cowork` 
   * Git, Slack, Trello
 
+<br>
+
 ## 시연 연상
 
 - [Wesulloc 시연 영상](https://www.youtube.com/watch?v=hi08z17A2s0)
 
+<br>
+
 ## API DOCUMENTATION
 - [POSTMAN API DOCUMENTATION](https://documenter.getpostman.com/view/21014545/Uz5JFa5h)
+
+<br>
 
 ## 구현 기능
 
@@ -113,8 +123,17 @@
 <br>
 
 > 리뷰 API
+
+![ezgif com-gif-maker (7)](https://user-images.githubusercontent.com/75832544/172137131-2a0e7697-199f-4130-91bb-da1971dbc7b2.gif)
+
+
 ```
 - 상품 리뷰 추가(POST), 조회(GET), 삭제(DELETE) 기능 구현
 - 별점, 평균 별점, 총 리뷰 수 출력
 ```
 <br>
+<br>
+
+## REFERENCE
+- 위 프로젝트는 "오설록" 사이트를 참조하여 학습 목적으로 만들어졌습니다.
+- 실무 수준의 프로젝트이지만, 학습용으로 만들어졌기 때문에 이 코드를 활용하여 이득을 취하거나 무단 배포할 경우 법적으로 문제가 될 수 있습니다.
