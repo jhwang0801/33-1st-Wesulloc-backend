@@ -1,5 +1,4 @@
 import json
-# import logging
 
 from django.http      import JsonResponse
 from django.views     import View
@@ -7,12 +6,9 @@ from django.db.models import Q, Count, Sum
 
 from products.models  import Product, Menu
 
-# logger = logging.getLogger()
-
 class CategoryView(View):
     def get(self, reqeust):
         menus = Menu.objects.all()
-        # menus = Menu.objects.all().prefetch_related('maincategory_set', 'maincategory_set__category_set')
 
         category_list = [{
             'menu_id'      : menu.id,
@@ -65,17 +61,12 @@ class ProductListView(View):
             .annotate(total_reviews=Count('review__id', distinct=True))\
             .order_by(sort_type.get(sort))[offset:offset+limit]
         
-        # products = Product.objects.filter(**filter).annotate(total_sales=Sum('orderitem__quantity', distinct=True))\
-        #             .annotate(total_reviews=Count('review__id', distinct=True))\
-        #             .order_by(sort_type.get(sort))[offset:offset+limit]
-        # **filter:: unpacking!!
-        
         products_list = [{
                 "id"           : product.id,
                 "name"         : product.name,
                 "price"        : product.price,
                 "discount_rate": product.discount_rate,
-                "novel"          : True if product in Product.objects.all().order_by('-id')[:2] else False,
+                "novel"        : True if product in Product.objects.all().order_by('-id')[:2] else False,
                 "sale_or_not"  : False if product.discount_rate == 0 else True,
                 "img_url"      : [image.img_url for image in product.productimage_set.all()],
         } for product in products]
@@ -86,7 +77,6 @@ class ProductDetailView(View):
     def get(self, request, *args, **kwargs):
         try:
             product = Product.objects.prefetch_related('productimage_set').get(id=kwargs["product_id"])
-
             product_detail = {
                     "id"          : product.id,
                     "img"         : [image.img_url for image in product.productimage_set.all()][0],
@@ -103,13 +93,6 @@ class ProductDetailView(View):
             return JsonResponse({'results' : product_detail}, status=200)
 
         except KeyError:
-            # logger.error(f"""
-            #     error_meesage : {
-            #         "function" : ProductDetailView.get(),
-            #         "message" : keyError,
-            #         "input" : {..}
-            #     }
-            # {}""")
             return JsonResponse({"message" : "KEY_ERROR"}, status=401)
         except Product.DoesNotExist:
             return JsonResponse({"message" : "PRODUCT_DOES_NOT_EXIST"}, status = 404)
