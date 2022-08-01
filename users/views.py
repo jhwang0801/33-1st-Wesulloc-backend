@@ -62,7 +62,6 @@ class LogInView(View):
     def post(self, request):
         try:
             data = json.loads(request.body)
-
             user = User.objects.get(account=data['user_account'])
 
             if not bcrypt.checkpw(data['user_password'].encode('utf-8'), user.password.encode('utf-8')):

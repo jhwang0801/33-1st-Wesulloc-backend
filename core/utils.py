@@ -1,11 +1,11 @@
 import jwt
 from django.conf import settings
-from users.models    import User
 from django.http import JsonResponse
 
+from users.models import User
 
 def access_token_check(func):
-    def wrapper(self,request,*args,**kwargs):
+    def wrapper(self, request, *args, **kwargs):
         try:
             access_token = request.headers.get('Authorization')
             payload      = jwt.decode(access_token, settings.SECRET_KEY, algorithms=settings.ALGORITHM)

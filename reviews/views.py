@@ -1,13 +1,13 @@
 import json
 
-from django.http      import JsonResponse
-from django.views     import View
-from core.utils       import access_token_check
+from django.http                import JsonResponse
+from django.views               import View
+from django.db.models           import Avg
 
+from core.utils       import access_token_check
 from products.models  import Product
 from reviews.models   import Review
-from django.db.models import Avg, FloatField
-from django.db.models.functions import Coalesce
+
 
 class ReviewView(View):
     @access_token_check
@@ -17,7 +17,6 @@ class ReviewView(View):
             user    = request.user
             rating  = data['rating']
             content = data['content']
-
             product = Product.objects.get(id = product_id)
 
             Review.objects.create(
@@ -42,8 +41,6 @@ class ReviewView(View):
 
         total_reviews = reviews.count()
         average_rates = reviews.aggregate(avg_rating=Avg('rating'))["avg_rating"] or 0
-        # ToDo: 아래 코드에서 dict형태로 나오는 것을 dict에서 빼내는 방법
-        # average_rates = reviews.aggregate(avg_rating=Coalesce(Avg('rating'), 0.00, output_field=FloatField()))
 
         review_list = [{
             "reviewId" : review.id,
